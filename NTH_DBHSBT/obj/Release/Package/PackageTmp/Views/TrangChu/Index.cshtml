@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<style>
+    .trangchu {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('../../image/trangchu.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+
+</style>
+
+<div class="trangchu">
+    <div class="container">
+        <div class="row p-5 rounded mt-5" style="background-color: #BFD9CB ">
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3">
+                    <i class="fa-regular fa-calendar-days mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Thông tin điểm danh", "DiemDanh", "DiemDanh", null, new { @class = "btn", style = "font-size: 15px;" })
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3 mt-3 mt-sm-0">
+                    <i class="fa-solid fa-utensils mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Đăng kí khẩu phần ăn", "HienThiKPA", "DangKiKhauPhanAn", null, new { @class = "btn", style = "font-size: 15px;" })
+                </div>
+
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3 mt-3 mt-md-0">
+                    <i class="fa-solid fa-bowl-food  mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Xem khẩu phần ăn", "KPADaDangKi", "XemKhauPhanAnDaDangKi", null, new { @class = "btn", style = "font-size: 15px;" })
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3 mt-3 mt-md-3 mt-lg-0">
+                    <i class="fa-solid fa-book-open mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Làm bài kiểm tra", "ThongTinBaiThi", "ThiOnline", null, new { @class = "btn", style = "font-size: 15px;" })
+
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3 mt-3 mt-md-3 mt-lg-0"style="background-color:#3399FF">
+                    <i class="fa-solid fa-chart-line mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Kết quả học tập", "KetQua", "KetQua", null, new { @class = "btn", style = "font-size: 15px;" })
+
+                </div>
+
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex flex-column align-items-center bg-white rounded py-3 mt-3 mt-sm-3 mt-md-3 mt-lg-0" >
+                    <i class="fa-solid fa-file-invoice-dollar mb-2 fs-3" style="color:#3399FF"></i>
+                    @Html.ActionLink("Công nợ", "CongNo", "CongNo", null, new { @class = "btn", style = "font-size: 15px;" })
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

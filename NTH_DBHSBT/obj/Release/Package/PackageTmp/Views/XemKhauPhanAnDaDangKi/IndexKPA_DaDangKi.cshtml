@@ -1,0 +1,65 @@
+﻿@model List<NTH_DBHSBT.Models.KPADaDangKi>
+@{
+    ViewBag.Title = "IndexKPA_DaDangKi";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="tieude">DANH SÁCH KHẨU PHẦN ĂN ĐÃ ĐĂNG KÍ</h2>
+
+<style>
+    .tieude {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 3px solid #ddd; /* Khung viền cho bảng */
+    }
+
+        .table th, .table td {
+            padding: 8px;
+            text-align: center; /* Căn giữa chữ trong ô */
+            border-bottom: 1px solid #ddd; /* Đường kẻ ngang giữa các dòng */
+            border-right: 1px solid #ddd; /* Đường kẻ dọc giữa các ô */
+        }
+
+        .table th {
+            background-color: #f2f2f2; /* Màu nền cho tiêu đề cột */
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none; /* Loại bỏ đường kẻ ngang ở dòng cuối cùng */
+        }
+
+        .table tbody tr td:last-child {
+            border-right: none; /* Loại bỏ đường kẻ dọc ở cột cuối cùng */
+        }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã học sinh</th>
+            <th>Ngày đăng kí</th>
+            <th>Thứ trong tuần</th>
+            <th>Giá</th>
+            <th>Mã combo</th>
+            <th>Qr Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var KPA in Model)
+        {
+            <tr>
+                <td>@KPA.MaHs</td>
+                <td>@KPA.NgayDangKi</td>
+                <td>@KPA.ThuTrongTuan</td>
+                <td>@KPA.Gia</td>
+                <td>@KPA.maComBo</td>
+                <td>@KPA.QRCode</td>
+            </tr>
+        }
+    </tbody>
+</table>

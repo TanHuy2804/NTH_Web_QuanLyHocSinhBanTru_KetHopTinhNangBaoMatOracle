@@ -1,0 +1,139 @@
+﻿@model List<NTH_DBHSBT.Models.KPADaDangKi>
+@{
+    ViewBag.Title = "KPADaDangKi";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    body {
+        background-size: cover; /* Phù hợp với kích thước của cửa sổ trình duyệt */
+    }
+
+    .tieudetrang {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .table {
+        margin: 0 auto;
+        width: 80%;
+        border-collapse: collapse;
+        border: 3px solid #ddd; /* Khung viền cho bảng */
+    }
+
+        .table th, .table td {
+            padding: 8px;
+            text-align: center; /* Căn giữa chữ trong ô */
+            border-bottom: 1px solid #ddd; /* Đường kẻ ngang giữa các dòng */
+            border-right: 1px solid #ddd; /* Đường kẻ dọc giữa các ô */
+        }
+
+        .table th {
+            background-color: #f2f2f2; /* Màu nền cho tiêu đề cột */
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none; /* Loại bỏ đường kẻ ngang ở dòng cuối cùng */
+        }
+
+        .table tbody tr td:last-child {
+            border-right: none; /* Loại bỏ đường kẻ dọc ở cột cuối cùng */
+        }
+
+    .my-popup-class {
+        width: 250px;
+        height: 200px;
+    }
+
+    .my-title-class {
+        font-size: 18px;
+    }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<body>
+    <h1 class="h3 mb-3 font-weight-normal tieudetrang">DANH SÁCH KHẨU PHẦN ĂN ĐÃ ĐĂNG KÝ</h1>
+    <table border="1" class="table">
+        <tr>
+            <th class="tieudebang">Mã HS</th>
+            <th class="tieudebang">Ngày đăng kí</th>
+            <th class="tieudebang">Mã combo</th>
+            <th class="tieudebang">Thứ trong tuần</th>
+            <th class="tieudebang">Giá</th>
+            <th class="tieudebang">QRCode</th>
+            <th class="tieudebang">Hủy đăng ký</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaHs</td>
+                <td>@item.NgayDangKi</td>
+                <td>@item.maComBo</td>
+                <td>@item.ThuTrongTuan</td>
+                <td>@item.Gia</td>
+                <td><img src="@Url.Content("../../QRCode/" + item.QRCode)" alt="QR Code" width="100" height="100"></td>
+
+                @*<td><a href="#" class="cancel-link">Hủy</a></td>*@
+
+                <td>
+                    <a href="#" class="cancel-link" data-mahs="@item.MaHs" data-thutrongtuan="@item.ThuTrongTuan" data-ngaydangki="@item.NgayDangKi">Hủy</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    document.querySelectorAll('.cancel-link').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            console.log("\nĐÃ THỰC HIÊN SỰ KIỆN");
+
+            var mahs = link.getAttribute('data-mahs');
+            var thutrongtuan = link.getAttribute('data-thutrongtuan');
+            var ngayDangKi = link.getAttribute('data-ngaydangki');
+
+            // Log to console
+            console.log("MaHS: " + mahs);
+            console.log("ThuTrongTuan: " + thutrongtuan);
+            console.log("NgayDangKi: " + ngayDangKi);
+            $.ajax({
+                url: '@Url.Action("CancelRegistration", "XemKhauPhanAnDaDangKi")',
+                type: 'GET',
+                data: { mahs: mahs, p_ThuTrongTuan: thutrongtuan , p_NgayDangKyKP: ngayDangKi },
+                success: function (result) {
+                    if (result === "success") {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Hủy đăng ký thành công",
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'my-popup-class',
+                                title: 'my-title-class'
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Lỗi khi hủy đăng ký",
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'my-popup-class',
+                                title: 'my-title-class'
+                            }
+                        });
+                    }
+                },
+            });
+        });
+    });
+</script>

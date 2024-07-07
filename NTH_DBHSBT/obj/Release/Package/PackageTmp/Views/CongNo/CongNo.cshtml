@@ -1,0 +1,148 @@
+﻿@model IEnumerable<NTH_DBHSBT.Models.CongNo>
+@{
+    ViewBag.Title = "CongNo";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    /* Định dạng dòng CÔNG  NỢ */
+    h2 {
+        text-align: center;
+        color: red;
+    }
+
+    /* Định dạng bảng */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+    }
+
+    /* Định dạng header của bảng */
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /* Định dạng dòng của bảng */
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Định dạng các ô dữ liệu của bảng */
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    /* Center the payment button */
+    .payment-button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .payment-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .payment-button:hover {
+        transform: scale(1.1); /* Enlarge the button */
+        background-color: #45a049; /* Darker background color */
+    }
+</style>
+
+<div class="container">
+    <h2>Danh sách công nợ</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã Công Nợ</th>
+                <th>Mã Học Sinh</th>
+                <th>Ngày Tạo Công Nợ</th>
+                <th>Tiền Học Phí</th>
+                <th>Tiền Ăn</th>
+                <th>Tiền Phụ Thu</th>
+                <th>Tổng Công Nợ</th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaCongNo</td>
+                    <td>@item.MaHS</td>
+                    <td>@item.NgayTaoCongNo.ToString("dd/MM/yyyy")</td>
+                    <td>@item.TienHocPhi.ToString("#,0.##")</td>
+                    <td>@item.TienAn.ToString("#,0.##")</td>
+                    <td>@item.TienPhuThu.ToString("#,0.##")</td>
+                    <td>@item.TongCongNo.ToString("#,0.##")</td>
+                    <td>@item.TrangThai</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="payment-button-container">
+        <a href="/CongNo/ThanhToanVNPAY" class="payment-button thanhtoan">
+            Thanh Toán
+        </a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+
+@*<script>
+        // Lặp qua từng liên kết "Đăng kí" để gắn sự kiện click
+        document.querySelectorAll('.thanhtoan').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                // Gọi Ajax hoặc chuyển hướng tới action DangKi của controller với mã combo
+                $.ajax({
+                    url: '@Url.Action("ThanhToanVnPay", "CongNo")',
+                    type: 'GET',
+                    success: function(result) {
+                        if (result === "error") {
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: "Không có công nợ",
+                                showConfirmButton: false,
+                                timer: 2000,
+                                customClass: {
+                                    popup: 'my-popup-class',
+                                    title: 'my-title-class'
+                                }
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Thanh toán công nợ thành công",
+                                showConfirmButton: false,
+                                timer: 2000,
+                                customClass: {
+                                    popup: 'my-popup-class',
+                                    title: 'my-title-class'
+                                }
+                            });
+                        }
+                    },
+                });
+            });
+        });
+    </script>*@

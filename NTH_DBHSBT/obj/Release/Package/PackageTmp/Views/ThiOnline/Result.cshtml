@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+    
+    <style>
+        /* Định dạng tổng thể cho thẻ div bên ngoài */
+div {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Định dạng cho tiêu đề kết quả thi */
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho tiêu đề kết quả bên trong */
+h4 {
+    color: #16a085;
+    margin-bottom: 10px;
+}
+
+/* Định dạng cho đoạn văn trong phần kết quả */
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Định dạng cho đoạn văn khi không có dữ liệu */
+div > div:last-child {
+    font-size: 16px;
+    color: #e74c3c;
+    margin-top: 20px;
+}
+
+/* Định dạng cho phần tử strong */
+strong {
+    color: #2980b9;
+}
+
+/* Định dạng cho div chứa kết quả */
+div > div {
+    border: 1px solid #bdc3c7;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Định dạng riêng cho div không có dữ liệu */
+div > div:not(:first-child) {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.info-item{
+    margin-left: 170px
+}
+
+    </style>
+    <div>
+        <div>
+            <h2>Kết Quả Thi</h2>
+            @if (ViewBag.SoCauDung != null && ViewBag.Diem != null)
+            {
+                <div>
+                    <p class="info-item">Số câu đúng: <strong>@ViewBag.SoCauDung</strong></p>
+                    <p class="info-item">Điểm: <strong>@ViewBag.Diem</strong></p>
+                </div>
+            }
+            else
+            {
+                <div>
+                    Không có dữ liệu kết quả thi.
+                </div>
+            }
+        </div>
+    </div>
+
+

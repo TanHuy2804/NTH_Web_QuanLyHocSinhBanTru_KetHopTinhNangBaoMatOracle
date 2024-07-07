@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="E:\HOC_KI_2_NAM_4_KY_SU\KhoaLuan_KySu\HUY\NTH_DBHSBT\NTH_DBHSBT\obj\Release\Package\PackageTmp" />
+  <setAcl path="E:\HOC_KI_2_NAM_4_KY_SU\KhoaLuan_KySu\HUY\NTH_DBHSBT\NTH_DBHSBT\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="E:\HOC_KI_2_NAM_4_KY_SU\KhoaLuan_KySu\HUY\NTH_DBHSBT\NTH_DBHSBT\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

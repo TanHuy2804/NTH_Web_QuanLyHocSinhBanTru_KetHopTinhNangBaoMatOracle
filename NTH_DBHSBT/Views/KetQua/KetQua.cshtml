@@ -1,0 +1,63 @@
+﻿@model IEnumerable<NTH_DBHSBT.Models.KetQua>
+@{
+    ViewBag.Title = "KetQua";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        color: red;
+    }
+    /* Định dạng bảng */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+    }
+
+    /* Định dạng header của bảng */
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /* Định dạng dòng của bảng */
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Định dạng các ô dữ liệu của bảng */
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+</style>
+
+<h2>Kết Quả Bài Kiểm Tra</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>MaHocSinh</th>
+            <th>MaDeThi</th>
+            <th>SoCauDung</th>
+            <th>DiemSo</th>
+            <th>ThoiGianLucNop</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaHocSinh</td>
+                <td>@item.MaDeThi</td>
+                <td>@item.SoCauDung</td>
+                <td>@item.DiemSo</td>
+                <td>@item.ThoiGianLucNop</td>
+            </tr>
+        }
+    </tbody>
+</table>

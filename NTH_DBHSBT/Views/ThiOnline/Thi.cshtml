@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "Thi";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model List<NTH_DBHSBT.Models.CauHoiModel>
+
+@{
+    Layout = null;
+}
+
+<style>
+    .thi {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .khung {
+        border: 1px solid lightgray;
+        padding: 10px 10px 10px 65px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    .cau-hoi {
+        margin-bottom: 20px;
+    }
+
+        .cau-hoi p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+    label {
+        font-size: 16px;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+    .error-message {
+        color: #d8000c;
+        background-color: #ffbaba;
+        border: 1px solid #d8000c;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .info-item {
+        /*text-align: center;*/
+        flex-basis: 45%;
+    }
+
+        .info-item label {
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 5px;
+        }
+
+        .info-item p {
+            display: inline-block;
+            margin: 0;
+        }
+
+    #countdown {
+        width: 100%;
+        /*text-align: center;*/
+    }
+
+        #countdown span {
+            color: red;
+        }
+</style>
+<div class="thi">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="error-message">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <h2>Thông tin bài kiểm tra</h2>
+            <div class="khung" style="background-color: #CCCCFF">
+                <div class="info">
+                    <div class="info-item">
+                        <label><b>Mã học sinh:</b></label>
+                        <p>@ViewBag.MaHocSinh</p>
+                    </div>
+
+                    <div class="info-item">
+                        <label><b>Môn học:</b></label>
+                        <p>@ViewBag.MaMonHoc</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <div class="info-item">
+                        @if (Model != null && Model.Any())
+                        {
+                            <label><b>Số lượng câu hỏi:</b></label>
+                            <p>@Model.Count</p>
+                        }
+                    </div>
+
+                    <div class="info-item" id="countdown">
+                        <label><b>Thời gian còn lại:</b></label>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container" style="background-color:#ffffff">
+            <h2>Bài Làm</h2>
+            @using (Html.BeginForm("Submit", "ThiOnline", FormMethod.Post))
+            {
+                <input type="hidden" name="MaHocSinh" value="@ViewBag.MaHocSinh" />
+                <input type="hidden" name="MaDeThi" value="@ViewBag.MaDeThi" />
+                var count = 0;
+                foreach (var cauHoi in Model)
+                {
+                    <div class="cau-hoi">
+                        <p><strong>Câu @(count + 1):</strong> @cauHoi.CauHoi</p>
+                        <input type="hidden" name="answers[@count].MaCauHoi" value="@cauHoi.MaCauHoi" />
+                        <label><input type="radio" name="answers[@count].DapAnDung" value="A" /> A. @cauHoi.DapAn_A</label><br />
+                        <label><input type="radio" name="answers[@count].DapAnDung" value="B" /> B. @cauHoi.DapAn_B</label><br />
+                        <label><input type="radio" name="answers[@count].DapAnDung" value="C" /> C. @cauHoi.DapAn_C</label><br />
+                        <label><input type="radio" name="answers[@count].DapAnDung" value="D" /> D. @cauHoi.DapAn_D</label><br />
+                    </div>
+                    count++;
+                }
+                <center>
+                    <input type="submit" value="Nộp bài" onclick="return confirmSubmit();" />
+                </center>
+            }
+        </div>
+    }
+</div>
+
+<script>
+    var startTime = new Date().getTime();
+    // Số phút đếm ngược lấy từ Thời gian thi của đề thi
+    var endTime = startTime + (parseInt('@ViewBag.ThoiGianThi'.replace(' phút', '')) * 60 * 1000);
+
+    // Cập nhật thời gian đếm ngược mỗi giây
+    var countdownElement = document.getElementById("countdown").getElementsByTagName('span')[0];
+    var x = setInterval(function () {
+        // Lấy thời gian hiện tại
+        var now = new Date().getTime();
+
+        // Tính thời gian còn lại
+        var distance = endTime - now;
+
+        // Tính toán phút và giây còn lại
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Hiển thị thời gian đếm ngược trong phần tử HTML
+        countdownElement.innerHTML = minutes + " phút " + seconds + " giây ";
+
+        // Kiểm tra nếu thời gian kết thúc
+        if (distance < 0) {
+            clearInterval(x);
+            countdownElement.innerHTML = "Hết thời gian!";
+            // Tự động nộp bài khi hết thời gian
+            document.forms[0].submit();
+        }
+    }, 1000); // Cập nhật thời gian mỗi giây (1000 mili giây)
+</script>
+
+<script>
+    function confirmSubmit() {
+        if (confirm("Bạn có chắc chắn muốn nộp bài không?")) {
+            // Nếu người dùng đồng ý, thì submit form
+            document.forms[0].submit();
+        } else {
+            // Nếu người dùng không đồng ý, thì không làm gì cả
+            return false;
+        }
+    }
+</script>
+
+<script>
+    window.history.pushState(null, null, "");
+    window.onpopstate = function (event) {
+        event.preventDefault();
+    };
+</script>
+

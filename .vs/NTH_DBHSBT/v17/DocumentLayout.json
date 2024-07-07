@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|e:\\hoc_ki_2_nam_4_ky_su\\khoaluan_kysu\\huy\\nth_dbhsbt\\nth_dbhsbt\\controllers\\congnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|solutionrelative:nth_dbhsbt\\controllers\\congnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|e:\\hoc_ki_2_nam_4_ky_su\\khoaluan_kysu\\huy\\nth_dbhsbt\\nth_dbhsbt\\controllers\\dangkikhauphanancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|solutionrelative:nth_dbhsbt\\controllers\\dangkikhauphanancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|e:\\hoc_ki_2_nam_4_ky_su\\khoaluan_kysu\\huy\\nth_dbhsbt\\nth_dbhsbt\\controllers\\dangnhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF4C006-68DD-44E4-9DE3-FFBD4ABD7EA5}|NTH_DBHSBT\\NTH_DBHSBT.csproj|solutionrelative:nth_dbhsbt\\controllers\\dangnhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CongNoController.cs",
+              "DocumentMoniker": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\CongNoController.cs",
+              "RelativeDocumentMoniker": "NTH_DBHSBT\\Controllers\\CongNoController.cs",
+              "ToolTip": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\CongNoController.cs",
+              "RelativeToolTip": "NTH_DBHSBT\\Controllers\\CongNoController.cs",
+              "ViewState": "AQIAADIBAAAAAAAAAAAowEkBAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T13:15:29.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DangKiKhauPhanAnController.cs",
+              "DocumentMoniker": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\DangKiKhauPhanAnController.cs",
+              "RelativeDocumentMoniker": "NTH_DBHSBT\\Controllers\\DangKiKhauPhanAnController.cs",
+              "ToolTip": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\DangKiKhauPhanAnController.cs",
+              "RelativeToolTip": "NTH_DBHSBT\\Controllers\\DangKiKhauPhanAnController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwIUAAABbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T13:15:17.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DangNhapController.cs",
+              "DocumentMoniker": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\DangNhapController.cs",
+              "RelativeDocumentMoniker": "NTH_DBHSBT\\Controllers\\DangNhapController.cs",
+              "ToolTip": "E:\\HOC_KI_2_NAM_4_KY_SU\\KhoaLuan_KySu\\HUY\\NTH_DBHSBT\\NTH_DBHSBT\\Controllers\\DangNhapController.cs",
+              "RelativeToolTip": "NTH_DBHSBT\\Controllers\\DangNhapController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwCUAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T09:02:34.086Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

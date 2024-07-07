@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ErrorPage";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>ErrorPage</h2>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lỗi</title>
+    <style>
+        body {
+            background-color: #EEF5FF;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .alert-box {
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            width: 50%;
+            text-align: center;
+        }
+
+        .close-btn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .close-btn:hover {
+                color: black;
+            }
+    </style>
+
+    <div class="alert-box">
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        @ViewBag.ErrorMessage
+    </div>
+    <script>
+        // Automatically close the alert box after 5 seconds (optional)
+        setTimeout(function(){
+            var alertBox = document.querySelector('.alert-box');
+            if (alertBox) {
+                alertBox.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+
+

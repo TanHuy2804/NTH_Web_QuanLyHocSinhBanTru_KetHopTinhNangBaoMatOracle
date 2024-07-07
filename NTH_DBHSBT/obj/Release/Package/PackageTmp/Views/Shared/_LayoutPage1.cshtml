@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="@Url.Action("Index", "TrangChu")">Trang chủ</a>
+
+                <div class="dropdown me-5">
+                    <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-regular fa-circle-user" style="font-size:24px"></i>
+                        <span id="student-name" class="ms-2" style="font-size:14px"> </span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Thông tin chi tiết</a></li>
+                        <li>
+                            @Html.ActionLink("Đăng xuất", "DangXuat", "DangXuat", null, new { @class = "btn" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    setInterval(function () {
+        $.ajax({
+            url: '/DangNhap/CheckAndLogout',
+            method: 'GET',
+            success: function (data) {
+                if (!data.isValid) {
+                    window.location.href = '/DangNhap/Connect';
+                }
+            },
+            error: function () {
+                console.log('Error checking session.');
+            }
+        });
+    }, 30000); // Kiểm tra 30 giây một lần
+</script>
+<script>
+    // Hàm để gửi yêu cầu AJAX và cập nhật tên học sinh
+    function fetchStudentName() {
+        $.ajax({
+            url: '/Dangnhap/LayTen',
+            method: 'GET',
+            success: function (data) {
+                $('#student-name').text(data.tenHocSinh); // Cập nhật nội dung của #student-name
+            },
+            error: function () {
+                console.log('Lỗi lấy tên học sinh.');
+            }
+        });
+    }
+
+    // Gọi hàm fetchStudentName khi trang được tải
+    $(document).ready(function () {
+        fetchStudentName(); // Lấy tên học sinh khi trang load
+    });
+</script>
+
+</html>

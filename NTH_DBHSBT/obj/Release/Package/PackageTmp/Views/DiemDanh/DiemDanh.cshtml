@@ -1,0 +1,166 @@
+﻿@model IEnumerable<NTH_DBHSBT.Models.DiemDanh>
+@{
+    ViewBag.Title = "DiemDanh";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>THÔNG TIN ĐIỂM DANH</h2>
+
+<style>
+    /* Định dạng dòng Kết Quả */
+    h2 {
+        text-align: center;
+        color: red;
+    }
+
+    /* Định dạng bảng */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        display: none; /* Ẩn bảng ban đầu */
+    }
+
+    /* Định dạng header của bảng */
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /* Định dạng dòng của bảng */
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Định dạng các ô dữ liệu của bảng */
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+</style>
+
+<div class="container">
+
+
+    <button id="chucnang_1" class="btn btn-primary">Hiển thị danh sách điểm danh</button>
+    <button id="chucnang_2" class="btn btn-primary">Xem điểm danh theo ngày</button>
+    <input type="date" id="input_ngay" placeholder="Nhập ngày">
+
+    <table class="table mt-4 table-striped" id="table_diemdanh">
+        <thead>
+            <tr>
+                <th>Ngày Điểm Danh</th>
+                <th>Mã Học Sinh</th>
+                <th>Tên Học Sinh</th>
+                <th>Trạng Thái Điểm Danh</th>
+                <th>Ghi Chú</th>
+                <th>Mã Giáo Viên</th>
+                <th>Mã Lớp</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NgayDiemDanh</td>
+                    <td>@item.MaHocSinh</td>
+                    <td>@item.TenHocSinh</td>
+                    <td>@item.TrangThaiDiemDanh</td>
+                    <td>@item.GhiChu</td>
+                    <td>@item.MaNhanVien</td>
+                    <td>@item.MaLop</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    var chucNang1Count = 0; // Biến đếm số lần chức năng 1 đã được nhấn
+    var chucNang2Count = 0; // Biến đếm số lần chức năng 1 đã được nhấn
+
+    document.getElementById('chucnang_1').addEventListener('click', function () {
+        chucNang1Count++; // Tăng biến đếm mỗi khi chức năng 1 được nhấn
+
+        if (chucNang1Count % 2 === 1) {
+            displayAllData(); // Hiển thị tất cả dữ liệu điểm danh nếu số lần nhấn là lẻ
+        } else {
+            hideTable_chucnang1(); // Ẩn bảng nếu số lần nhấn là chẵn
+        }
+    });
+
+    document.getElementById('chucnang_2').addEventListener('click', function () {
+        chucNang1Count++; // Tăng biến đếm mỗi khi chức năng 1 được nhấn
+
+        if (chucNang1Count % 2 === 1) {
+            filterByDate(); // Lọc và hiển thị dữ liệu điểm danh theo ngày nếu số lần nhấn là lẻ
+        } else {
+            hideTable_chucnang2(); // Ẩn bảng nếu số lần nhấn là chẵn
+        }
+    });
+
+    function hideTable_chucnang1() {
+        // Ẩn bảng và cập nhật nút chức năng 1
+        document.getElementById('table_diemdanh').style.display = 'none';
+        document.getElementById('chucnang_1').textContent = 'Hiển thị danh sách điểm danh';
+    }
+
+    function hideTable_chucnang2() {
+        // Ẩn bảng và cập nhật nút chức năng 1
+        document.getElementById('table_diemdanh').style.display = 'none';
+        document.getElementById('chucnang_2').textContent = 'Xem điểm danh theo ngày';
+    }
+
+    function displayAllData() {
+        var rows = document.querySelectorAll('#table_diemdanh tbody tr');
+
+        // Hiển thị tất cả các hàng trong bảng
+        rows.forEach(function (row) {
+            row.style.display = '';
+        });
+
+        // Hiển thị bảng và cập nhật nút chức năng 1
+        document.getElementById('table_diemdanh').style.display = 'table';
+        document.getElementById('chucnang_1').textContent = 'Ẩn bảng';
+    }
+
+    function filterByDate() {
+        var inputNgay = document.getElementById('input_ngay').value;
+        var inputDate = new Date(inputNgay); // Chuyển đổi ngày được nhập thành đối tượng Date
+        var soLuongBanGhiTimThay = 0; // Biến lưu trữ số lượng bản ghi được tìm thấy
+
+        var rows = document.querySelectorAll('#table_diemdanh tbody tr');
+
+        // Lặp qua mỗi hàng trong bảng
+        rows.forEach(function (row) {
+            var ngayDiemDanhFull = row.cells[0].textContent.trim(); // Lấy giá trị ngày điểm danh từ ô đầu tiên trong hàng
+            var ngayDiemDanhParts = ngayDiemDanhFull.split(' ')[0].split('/'); // Tách phần ngày, tháng, năm
+
+            // Tạo đối tượng Date mới từ phần ngày, tháng, năm
+            var ngayDiemDanh = new Date(ngayDiemDanhParts[2], ngayDiemDanhParts[1] - 1, ngayDiemDanhParts[0]);
+
+            // So sánh ngày điểm danh với ngày nhập vào
+            if (ngayDiemDanh.toDateString() === inputDate.toDateString()) {
+                row.style.display = ''; // Hiển thị hàng nếu ngày điểm danh trùng khớp với ngày nhập vào
+                soLuongBanGhiTimThay++; // Tăng số lượng bản ghi được tìm thấy
+            } else {
+                row.style.display = 'none'; // Ẩn hàng nếu không khớp
+            }
+        });
+
+        // Hiển thị bảng sau khi tìm kiếm
+        document.getElementById('table_diemdanh').style.display = 'table';
+        document.getElementById('chucnang_2').textContent = 'Ẩn bảng';
+        document.getElementById('chucnang_1').textContent = 'Hiển thị danh sách điểm danh';
+
+        if (soLuongBanGhiTimThay === 0) {
+            // Hiển thị thông báo "Không tìm thấy thông tin nào!"
+            alert('Không tìm thấy thông tin nào!');
+        }
+    }
+
+</script>
